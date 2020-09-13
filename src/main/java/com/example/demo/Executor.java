@@ -1,34 +1,43 @@
 package com.example.demo;
 
-import com.example.demo.dao.MagicData;
-import com.example.demo.services.Service;
+import com.example.demo.services.NoteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Executor {
-    private Service service;
-    private MagicData data;
+    private NoteService noteService;
     private int memosize = 8;
+    private String skip = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 
-    public Executor(Service service, MagicData data) {
-        this.service = service;
-        this.data = data;
+    @Autowired
+    public Executor(NoteService noteService) {
+        this.noteService = noteService;
     }
 
     public void start() {
-        data.addNoteData();
-        System.out.println("Laptop list:" + "\n");
-        service.printAll();
-        System.out.println("Laptops by make:" + "\n");
-        service.printByMake("make");
-        System.out.println("Laptops with RAM 8+" + "\n");
-        service.printByMemoSize(memosize);
-        System.out.println("Used laptops" + "\n");
-        service.printUsed(true);
+        noteService.addNoteData();
+        margin();
+        System.out.println("Laptop list:");
+        noteService.printAll();
+        margin();
+        System.out.println(skip + "Laptops by make:");
+        noteService.printByMake("make");
+        margin();
+        System.out.println(skip + "Laptops with RAM 8+");
+        noteService.printByMemoSize(memosize);
+        margin();
+        System.out.println(skip + "Used laptops");
+        noteService.printUsed(true);
+        margin();
         exit();
     }
 
-    public void exit(){
+    public void margin() {
+        System.out.println();
+    }
+
+    public void exit() {
         System.exit(0);
     }
 }

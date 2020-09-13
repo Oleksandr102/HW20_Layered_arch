@@ -5,9 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories
 @SpringBootApplication
 public class DemoApplication implements ApplicationRunner {
 
@@ -18,12 +16,13 @@ public class DemoApplication implements ApplicationRunner {
         this.execut = execut;
     }
 
+    @Override
+    public void run(ApplicationArguments args) {
+        execut.start();
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-    @Override
-    public void run(ApplicationArguments args){
-        execut.start();
-    }
 }
