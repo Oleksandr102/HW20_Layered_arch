@@ -12,8 +12,9 @@ public class NoteService {
     @Autowired
     private NoteDao dao;
 
-    public void saveNote(Note note) {
-        dao.save(note);
+    public Object saveNote(Note note) {
+       Object newNote = dao.save(note);
+       return newNote;
     }
 
     public void printAll() {
