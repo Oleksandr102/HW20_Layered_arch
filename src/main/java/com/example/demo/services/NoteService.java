@@ -13,8 +13,8 @@ public class NoteService {
     private NoteDao dao;
 
     public Object saveNote(Note note) {
-       Object newNote = dao.save(note);
-       return newNote;
+        Object newNote = dao.save(note);
+        return newNote;
     }
 
     public void printAll() {
@@ -32,6 +32,10 @@ public class NoteService {
     public void printByMake(String make) {
         dao.findAll(Sort.by(make).descending()).forEach(System.out::println);
     }
+//
+//    public void printTower(String tower){
+//        dao.findAllWithTower(tower)
+//    }
 
     public void addNoteData() {
         saveNote(new Note("Demon", "x-kom", 8, "i9",

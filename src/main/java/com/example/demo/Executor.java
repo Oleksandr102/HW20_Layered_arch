@@ -50,7 +50,7 @@ public class Executor {
         System.out.println(skip + "Used laptops");
         noteService.printUsed(true);
         margin();
-        exit();
+//        exit();
     }
 
     public void margin() {

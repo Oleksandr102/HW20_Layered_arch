@@ -16,4 +16,9 @@ public interface NoteDao extends JpaRepository<Note, Long> {
 
     List<Note> findByUsedIs(boolean used);
 
+    List<Note> findAllByIdIsNotNull();
+    List<Note> findAllById(Long id);
+
+//    List<Note> findAllWithTower(@Param("tower")String tower);
+
 }
