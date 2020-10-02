@@ -3,11 +3,16 @@ package com.example.demo.services;
 
 import com.example.demo.dao.NoteDao;
 import com.example.demo.models.Note;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
+@RequiredArgsConstructor
 public class NoteService {
     @Autowired
     private NoteDao dao;
@@ -21,21 +26,17 @@ public class NoteService {
         dao.findAll().forEach(System.out::println);
     }
 
-    public void printByMemoSize(Integer memo) {
-        dao.findAllWithMemo(memo).forEach(System.out::println);
+    public List<Note> printByMemoSize(Integer memo) {
+       return dao.findAllWithMemo(memo);
     }
 
-    public void printUsed(boolean used) {
-        dao.findByUsedIs(used).forEach(System.out::println);
+    public List<Note> printUsed(boolean used) {
+        return dao.findByUsedIs(used);
     }
 
-    public void printByMake(String make) {
-        dao.findAll(Sort.by(make).descending()).forEach(System.out::println);
+    public List<Note> printByMake(String make) {
+        return dao.findAll(Sort.by(make).descending());
     }
-//
-//    public void printTower(String tower){
-//        dao.findAllWithTower(tower)
-//    }
 
     public void addNoteData() {
         saveNote(new Note("Demon", "x-kom", 8, "i9",

@@ -1,24 +1,23 @@
 package com.example.demo;
 
+import com.example.demo.controllers.NoteController;
 import com.example.demo.services.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 
-import java.util.Scanner;
 
 @Component
 public class Executor {
     private NoteService noteService;
-    private int memosize = 8;
-    private String skip = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-//    public Scanner scanner = new Scanner(System.in);
+    private final NoteController noteController;
+    private final int memoSize = 8;
+    private final String skip = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+
 
     @Autowired
-    public Executor(NoteService noteService) {
+    public Executor(NoteService noteService, NoteController noteController) {
         this.noteService = noteService;
+        this.noteController = noteController;
     }
 
 //    @Autowired
@@ -42,13 +41,13 @@ public class Executor {
         noteService.printAll();
         margin();
         System.out.println(skip + "Laptops by make:");
-        noteService.printByMake("make");
+        noteController.getByMake("make");
         margin();
         System.out.println(skip + "Laptops with RAM 8+");
-        noteService.printByMemoSize(memosize);
+        noteController.getByMemo(memoSize);
         margin();
         System.out.println(skip + "Used laptops");
-        noteService.printUsed(true);
+        noteController.getAllUsedNotes(true);
         margin();
 //        exit();
     }

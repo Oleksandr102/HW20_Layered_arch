@@ -1,12 +1,12 @@
 //package com.example.demo.models;
 //
+//import com.example.demo.enums.UserRoles;
 //import lombok.Data;
 //import lombok.NoArgsConstructor;
+//import org.springframework.boot.autoconfigure.security.SecurityProperties;
 //
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
+//import javax.persistence.*;
+//import java.util.Set;
 //
 //@Data
 //@NoArgsConstructor
@@ -24,4 +24,7 @@
 //        this.login = login;
 //        this.password = password;
 //    }
+//    @ElementCollection(targetClass = UserRoles.class, fetch = FetchType.EAGER)
+//    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+//    private Set<UserRoles> roles;
 //}
